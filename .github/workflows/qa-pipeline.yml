@@ -1,0 +1,25 @@
+name: PTA QA Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Code Lao
+      uses: actions/checkout@v4
+
+    - name: Python Setup Karo
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Dependencies Install Karo
+      run: |
+        pip install pytest
+        pip install selenium
+        pip install webdriver-manager
+
+    - name: Tests Chalao
+      run: pytest pta_test.py -v
