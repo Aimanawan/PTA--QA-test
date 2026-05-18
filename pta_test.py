@@ -3,6 +3,7 @@ import pytest
 import time
 import json
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions
@@ -12,7 +13,11 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class TestPTAwebtest1():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome()
+    chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+self.driver = webdriver.Chrome(options=chrome_options)
     self.vars = {}
   
   def teardown_method(self, method):
