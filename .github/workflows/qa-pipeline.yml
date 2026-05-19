@@ -25,6 +25,14 @@ jobs:
         pip install pytest
         pip install selenium
         pip install webdriver-manager
+        pip install pytest-html
 
-    - name: Tests Chalao
-      run: pytest pta_test.py -v
+    - name: Tests Chalao aur Report Banao
+      run: pytest pta_test.py -v --html=report.html --self-contained-html
+
+    - name: Report Upload Karo
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: QA-Test-Report
+        path: report.html
